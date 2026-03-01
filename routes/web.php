@@ -24,4 +24,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/absensi-guru', function () {
+    return Inertia::render('AbsensiGuru');
+})->name('absensi.guru');
+
 require __DIR__.'/auth.php';
