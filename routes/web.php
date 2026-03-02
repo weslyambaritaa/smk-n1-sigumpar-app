@@ -25,18 +25,21 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// ... kode rute lainnya di atas ...
+
 Route::get('/absensi-siswa', function () {
+    // Tambahkan jalur foldernya: app/kepala-sekolah/
     return Inertia::render('app/kepala-sekolah/AbsensiSiswa');
 })->name('absensi.siswa');
 
 Route::get('/absensi-guru', function () {
+    // Tambahkan jalur foldernya: app/kepala-sekolah/
     return Inertia::render('app/kepala-sekolah/AbsensiGuru');
 })->name('absensi.guru');
 
+// Jangan lupa sekalian tambahkan untuk Perangkat Ajar ya!
 Route::get('/perangkat-ajar', function () {
     return Inertia::render('app/kepala-sekolah/PerangkatAjar');
 })->name('perangkat.ajar');
 
 require __DIR__.'/auth.php';
-
-
