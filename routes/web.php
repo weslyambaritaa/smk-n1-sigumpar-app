@@ -26,11 +26,17 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/absensi-siswa', function () {
-    return Inertia::render('AbsensiSiswa');
+    return Inertia::render('app/kepala-sekolah/AbsensiSiswa');
 })->name('absensi.siswa');
 
 Route::get('/absensi-guru', function () {
-    return Inertia::render('AbsensiGuru');
+    return Inertia::render('app/kepala-sekolah/AbsensiGuru');
 })->name('absensi.guru');
 
+Route::get('/perangkat-ajar', function () {
+    return Inertia::render('app/kepala-sekolah/PerangkatAjar');
+})->name('perangkat.ajar');
+
 require __DIR__.'/auth.php';
+
+
