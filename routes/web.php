@@ -53,12 +53,30 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// ... kode rute lainnya di atas ...
+
 Route::get('/absensi-siswa', function () {
-    return Inertia::render('AbsensiSiswa');
+
+    return Inertia::render('app/kepala-sekolah/AbsensiSiswa');
 })->name('absensi.siswa');
 
 Route::get('/absensi-guru', function () {
-    return Inertia::render('AbsensiGuru');
+
+    return Inertia::render('app/kepala-sekolah/AbsensiGuru');
 })->name('absensi.guru');
+
+
+Route::get('/perangkat-ajar', function () {
+    return Inertia::render('app/kepala-sekolah/PerangkatAjar');
+})->name('perangkat.ajar');
+
+Route::get('/evaluasi-kinerja', function () {
+    return Inertia::render('app/kepala-sekolah/EvaluasiKinerjaGuru');
+})->name('evaluasi.kinerja');
+
+
+Route::get('/pkl', function () {
+    return Inertia::render('app/kepala-sekolah/PKL');
+})->name('pkl');
 
 require __DIR__.'/auth.php';
