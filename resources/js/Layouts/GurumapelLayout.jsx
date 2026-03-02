@@ -44,7 +44,7 @@ export default function GurumapelLayout({ children }) {
                     <div className="flex flex-col items-center">
                         {/* sidebar photo cis, place file cis.png in public/images */}
                         <img
-                            src="/images/foto cis.png"
+                            src="/image/foto cis.jpg"
                             alt="Foto CIS"
                             className="w-16 h-16 rounded-full mb-3"
                         />
@@ -102,7 +102,7 @@ export default function GurumapelLayout({ children }) {
                     <div className="flex items-center space-x-4">
                         {/* header image fiti tutwuri — put fiti-tutwuri.png in public/images */}
                         <img
-                            src="/images/tutwuri.png"
+                            src="/image/tutwuri.png"
                             alt="Tutwuri"
                             className="w-12 h-12 rounded-full"
                         />
