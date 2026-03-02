@@ -32,6 +32,10 @@ Route::get('/absensi-guru', function () {
     return Inertia::render('AbsensiGuru');
 })->name('absensi.guru');
 
+Route::get('/pkl-laporan', function () {
+    return Inertia::render('app/kepala-sekolah/PKL');
+})->name('pkl.laporan');
+
 
 // --- ROUTE PRIVATE (Harus Login) ---
 
