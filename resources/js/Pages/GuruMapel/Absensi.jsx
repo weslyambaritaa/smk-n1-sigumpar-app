@@ -3,165 +3,171 @@ import { Head } from "@inertiajs/react";
 
 export default function Absensi() {
     const siswaData = [
-        { id: 1, nama: "Andi Wijaya", status: "Hadir", jam: "07:30" },
-        { id: 2, nama: "Budi Santoso", status: "Hadir", jam: "07:25" },
-        { id: 3, nama: "Citra Dewi", status: "Sakit", jam: "-" },
-        { id: 4, nama: "Dedi Hermawan", status: "Hadir", jam: "07:35" },
-        { id: 5, nama: "Eka Putri", status: "Sakit", jam: "-" },
-        { id: 6, nama: "Fandi Irawan", status: "Izin", jam: "-" },
+        { id: 1, nama: "Andi Wijaya", nis: "12345", status: "Hadir" },
+        { id: 2, nama: "Budi Santoso", nis: "12346", status: "Hadir" },
+        { id: 3, nama: "Citra Dewi", nis: "12347", status: "Sakit" },
+        { id: 4, nama: "Dedi Hermawan", nis: "12348", status: "Hadir" },
+        { id: 5, nama: "Eka Putri", nis: "12349", status: "Sakit" },
+        { id: 6, nama: "Fandi Irawan", nis: "12350", status: "Izin" },
     ];
 
     return (
         <GurumapelLayout>
             <Head title="Absensi Siswa" />
 
-            <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-2xl font-bold mb-4">Absensi Siswa</h2>
+            <div className="max-w-5xl mx-auto py-8 px-6">
+                {/* CARD UTAMA (SESUIA FIGMA) */}
+                <div className="bg-gray-100 border border-gray-400 rounded-md p-6">
+                    <h2 className="text-lg font-semibold mb-6">
+                        Absensi Siswa
+                    </h2>
 
-                {/* filter section */}
-                <div className="bg-white rounded-lg shadow p-6 mb-6">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {/* FILTER */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                         <div>
-                            <label className="block text-sm font-semibold mb-1">
+                            <label className="block text-sm font-medium mb-1">
                                 Kelas
                             </label>
-                            <select className="w-full border px-3 py-2 rounded">
+                            <select className="w-full border border-gray-400 px-3 py-2 text-sm">
                                 <option>X TKJ A</option>
                                 <option>X TKJ B</option>
                                 <option>XI TKJ</option>
                             </select>
                         </div>
+
                         <div>
-                            <label className="block text-sm font-semibold mb-1">
+                            <label className="block text-sm font-medium mb-1">
                                 Mata Pelajaran
                             </label>
-                            <select className="w-full border px-3 py-2 rounded">
+                            <select className="w-full border border-gray-400 px-3 py-2 text-sm">
                                 <option>Algoritma</option>
                                 <option>Basis Data</option>
                             </select>
                         </div>
+
                         <div>
-                            <label className="block text-sm font-semibold mb-1">
+                            <label className="block text-sm font-medium mb-1">
                                 Tanggal
                             </label>
                             <input
                                 type="date"
-                                className="w-full border px-3 py-2 rounded"
+                                className="w-full border border-gray-400 px-3 py-2 text-sm"
                             />
                         </div>
                     </div>
-                    <div className="mt-4 text-right">
-                        <button className="bg-blue-500 text-white px-4 py-2 rounded">
+
+                    <div className="text-right mb-6">
+                        <button className="bg-blue-600 text-white px-4 py-2 text-sm">
                             Cari
+                        </button>
+                    </div>
+
+                    {/* TABEL ABSENSI */}
+                    <div className="overflow-x-auto">
+                        <table className="w-full border border-gray-400 text-sm">
+                            <thead>
+                                <tr className="bg-gray-300 text-center">
+                                    <th className="border border-gray-400 px-3 py-2 w-12">
+                                        No
+                                    </th>
+                                    <th className="border border-gray-400 px-3 py-2">
+                                        Nama Siswa
+                                    </th>
+                                    <th className="border border-gray-400 px-3 py-2">
+                                        NIS
+                                    </th>
+                                    <th className="border border-gray-400 px-3 py-2">
+                                        Status Kehadiran
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {siswaData.map((siswa, index) => (
+                                    <tr key={siswa.id}>
+                                        <td className="border border-gray-400 px-3 py-2 text-center">
+                                            {index + 1}
+                                        </td>
+                                        <td className="border border-gray-400 px-3 py-2">
+                                            {siswa.nama}
+                                        </td>
+                                        <td className="border border-gray-400 px-3 py-2 text-center">
+                                            {siswa.nis}
+                                        </td>
+                                        <td className="border border-gray-400 px-3 py-2">
+                                            <select
+                                                className="w-full border border-gray-400 px-2 py-1 text-sm"
+                                                defaultValue={siswa.status}
+                                            >
+                                                <option>Hadir</option>
+                                                <option>Sakit</option>
+                                                <option>Izin</option>
+                                                <option>Alpa</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {/* TOMBOL SIMPAN */}
+                    <div className="text-right mt-6">
+                        <button className="bg-green-600 text-white px-4 py-2 text-sm">
+                            Simpan Absensi
                         </button>
                     </div>
                 </div>
 
-                {/* attendance table */}
-                <div className="bg-white rounded-lg shadow p-4 overflow-x-auto">
-                    <table className="w-full border-collapse">
-                        <thead>
-                            <tr className="bg-gray-200">
-                                <th className="px-4 py-2 border">No</th>
-                                <th className="px-4 py-2 border">Nama Siswa</th>
-                                <th className="px-4 py-2 border">NIS</th>
-                                <th className="px-4 py-2 border">Hadir</th>
-                                <th className="px-4 py-2 border">Sakit</th>
-                                <th className="px-4 py-2 border">Izin</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {siswaData.map((siswa, index) => (
-                                <tr key={siswa.id} className="hover:bg-gray-50">
-                                    <td className="px-4 py-2 border">
-                                        {index + 1}
-                                    </td>
-                                    <td className="px-4 py-2 border">
-                                        {siswa.nama}
-                                    </td>
-                                    <td className="px-4 py-2 border">
-                                        {siswa.nis || "12345"}
-                                    </td>
-                                    <td className="px-4 py-2 border text-center">
-                                        <input
-                                            type="radio"
-                                            name={`status-${siswa.id}`}
-                                            defaultChecked={
-                                                siswa.status === "Hadir"
-                                            }
-                                        />
-                                    </td>
-                                    <td className="px-4 py-2 border text-center">
-                                        <input
-                                            type="radio"
-                                            name={`status-${siswa.id}`}
-                                            defaultChecked={
-                                                siswa.status === "Sakit"
-                                            }
-                                        />
-                                    </td>
-                                    <td className="px-4 py-2 border text-center">
-                                        <input
-                                            type="radio"
-                                            name={`status-${siswa.id}`}
-                                            defaultChecked={
-                                                siswa.status === "Izin"
-                                            }
-                                        />
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+                {/* ========================= */}
+                {/* RIWAYAT ABSENSI (TETAP ADA) */}
+                {/* ========================= */}
 
-                <div className="mt-4 text-right">
-                    <button className="bg-green-500 text-white px-4 py-2 rounded">
-                        Simpan Absensi
-                    </button>
-                </div>
-
-                {/* saved attendance history */}
-                <div className="mt-8">
-                    <h3 className="text-xl font-semibold mb-4">
+                <div className="mt-10">
+                    <h3 className="text-lg font-semibold mb-4">
                         Riwayat Absensi
                     </h3>
-                    <div className="bg-white rounded-lg shadow p-4 overflow-x-auto">
-                        <table className="w-full border-collapse">
+
+                    <div className="border border-gray-400 bg-white overflow-x-auto">
+                        <table className="w-full text-sm">
                             <thead>
-                                <tr className="bg-gray-200">
-                                    <th className="px-4 py-2 border">
+                                <tr className="bg-gray-200 text-center">
+                                    <th className="border border-gray-400 px-3 py-2">
                                         Tanggal
                                     </th>
-                                    <th className="px-4 py-2 border">Kelas</th>
-                                    <th className="px-4 py-2 border">Mapel</th>
-                                    <th className="px-4 py-2 border">
+                                    <th className="border border-gray-400 px-3 py-2">
+                                        Kelas
+                                    </th>
+                                    <th className="border border-gray-400 px-3 py-2">
+                                        Mapel
+                                    </th>
+                                    <th className="border border-gray-400 px-3 py-2">
                                         Jumlah Hadir
                                     </th>
-                                    <th className="px-4 py-2 border">Aksi</th>
+                                    <th className="border border-gray-400 px-3 py-2">
+                                        Aksi
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {siswaData.slice(0, 2).map((s, i) => (
-                                    <tr key={i} className="hover:bg-gray-50">
-                                        <td className="px-4 py-2 border">
-                                            01 Mar 2026
-                                        </td>
-                                        <td className="px-4 py-2 border">
-                                            X TKJ A
-                                        </td>
-                                        <td className="px-4 py-2 border">
-                                            Algoritma
-                                        </td>
-                                        <td className="px-4 py-2 border">2</td>
-                                        <td className="px-4 py-2 border">
-                                            <button className="text-blue-500 hover:text-blue-700 text-sm flex items-center space-x-1">
-                                                <span>🔍</span>
-                                                <span>Detail</span>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                ))}
+                                <tr>
+                                    <td className="border border-gray-400 px-3 py-2 text-center">
+                                        01 Mar 2026
+                                    </td>
+                                    <td className="border border-gray-400 px-3 py-2 text-center">
+                                        X TKJ A
+                                    </td>
+                                    <td className="border border-gray-400 px-3 py-2 text-center">
+                                        Algoritma
+                                    </td>
+                                    <td className="border border-gray-400 px-3 py-2 text-center">
+                                        24
+                                    </td>
+                                    <td className="border border-gray-400 px-3 py-2 text-center">
+                                        <button className="text-blue-600 text-sm">
+                                            Detail
+                                        </button>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
