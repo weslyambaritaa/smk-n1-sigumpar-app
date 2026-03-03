@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -7,10 +7,7 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('app/tata-usaha/tata-usaha-page', [
-        'tuList' => [
-            'data' => [], 
-            'last_page' => 1
-        ],
+        'tuList' => ['data' => [], 'last_page' => 1],
         'auth' => ['user' => auth()->user()],
         'appName' => config('app.name'),
         'perPage' => 10,
@@ -71,20 +68,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// ... kode rute lainnya di atas ...
-
 Route::get('/absensi-siswa', function () {
-
     return Inertia::render('app/kepala-sekolah/AbsensiSiswa');
 })->name('absensi.siswa');
 
 Route::get('/absensi-guru', function () {
-
     return Inertia::render('app/kepala-sekolah/AbsensiGuru');
 })->name('absensi.guru');
-
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 Route::get('/perangkat-ajar', function () {
     return Inertia::render('app/kepala-sekolah/PerangkatAjar');
@@ -94,13 +84,8 @@ Route::get('/evaluasi-kinerja', function () {
     return Inertia::render('app/kepala-sekolah/EvaluasiKinerjaGuru');
 })->name('evaluasi.kinerja');
 
-
 Route::get('/pkl', function () {
     return Inertia::render('app/kepala-sekolah/PKL');
 })->name('pkl');
 
-=======
->>>>>>> wakil-kepala-sekolah
-=======
->>>>>>> origin/tata-usaha
 require __DIR__.'/auth.php';
