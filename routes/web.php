@@ -36,25 +36,55 @@ Route::prefix('wakepsek')->group(function () {
     })->name('wakepsek.form-instruksi.send');
 });
 
-Route::prefix('wali-kelas')->group(function () {
+Route::prefix('guru-mapel')->name('guru-mapel.')->group(function () {
+    Route::get('/dashboard', function () {
+        return Inertia::render('GurumapelDashboard');
+    })->name('dashboard');
+    Route::get('/absensi', function () {
+        return Inertia::render('GuruMapel/Absensi');
+    })->name('absensi');
+    Route::get('/perangkat', function () {
+        return Inertia::render('GuruMapel/Perangkat');
+    })->name('perangkat');
+    Route::get('/nilai', function () {
+        return Inertia::render('GuruMapel/Nilai');
+    })->name('nilai');
+    Route::get('/catatan', function () {
+        return Inertia::render('GuruMapel/Catatan');
+    })->name('catatan');
+    Route::get('/laporan', function () {
+        return Inertia::render('GuruMapel/Laporan');
+    })->name('laporan');
+});
+
+Route::prefix('wali-kelas')->name('wali-kelas.')->group(function () {
     Route::get('/dashboard', function () {
         return Inertia::render('WaliKelas/Dashboard');
-    })->name('walikelas.dashboard');
-    Route::get('/kebersihan-kelas', function () {
-        return Inertia::render('WaliKelas/KebersihanKelas');
-    })->name('walikelas.kebersihan-kelas');
+    })->name('dashboard');
+    Route::get('/kehadiran', function () {
+        return Inertia::render('WaliKelas/RekapKehadiran');
+    })->name('kehadiran');
+    Route::get('/nilai', function () {
+        return Inertia::render('WaliKelas/RekapNilai');
+    })->name('nilai');
     Route::get('/parenting', function () {
         return Inertia::render('WaliKelas/Parenting');
-    })->name('walikelas.parenting');
+    })->name('parenting');
+    Route::post('/parenting', function () {
+        return redirect()->route('wali-kelas.parenting');
+    })->name('parenting.store');
+    Route::get('/kebersihan', function () {
+        return Inertia::render('WaliKelas/KebersihanKelas');
+    })->name('kebersihan');
+    Route::post('/kebersihan', function () {
+        return redirect()->route('wali-kelas.kebersihan');
+    })->name('kebersihan.store');
     Route::get('/refleksi', function () {
         return Inertia::render('WaliKelas/Refleksi');
-    })->name('walikelas.refleksi');
-    Route::get('/rekap-kehadiran', function () {
-        return Inertia::render('WaliKelas/RekapKehadiran');
-    })->name('walikelas.rekap-kehadiran');
-    Route::get('/rekap-nilai', function () {
-        return Inertia::render('WaliKelas/RekapNilai');
-    })->name('walikelas.rekap-nilai');
+    })->name('refleksi');
+    Route::post('/refleksi', function () {
+        return redirect()->route('wali-kelas.refleksi');
+    })->name('refleksi.store');
 });
 
 Route::prefix('kepala-sekolah')->group(function () {
@@ -73,27 +103,6 @@ Route::prefix('kepala-sekolah')->group(function () {
     Route::get('/pkl', function () {
         return Inertia::render('app/kepala-sekolah/PKL');
     })->name('kepsek.pkl');
-});
-
-Route::prefix('guru-mapel')->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('GurumapelDashboard');
-    })->name('guru-mapel.dashboard');
-    Route::get('/absensi', function () {
-        return Inertia::render('GuruMapel/Absensi');
-    })->name('guru-mapel.absensi');
-    Route::get('/perangkat', function () {
-        return Inertia::render('GuruMapel/Perangkat');
-    })->name('guru-mapel.perangkat');
-    Route::get('/nilai', function () {
-        return Inertia::render('GuruMapel/Nilai');
-    })->name('guru-mapel.nilai');
-    Route::get('/catatan', function () {
-        return Inertia::render('GuruMapel/Catatan');
-    })->name('guru-mapel.catatan');
-    Route::get('/laporan', function () {
-        return Inertia::render('GuruMapel/Laporan');
-    })->name('guru-mapel.laporan');
 });
 
 Route::prefix('tata-usaha')->group(function () {
