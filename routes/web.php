@@ -6,13 +6,16 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
+    return Inertia::render('app/tata-usaha/tata-usaha-page', [
+        'tuList' => [
+            'data' => [], 
+            'last_page' => 1
+        ],
+        'auth' => ['user' => auth()->user()],
+        'appName' => config('app.name'),
+        'perPage' => 10,
     ]);
-});
+})->name('tata-usaha');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -81,6 +84,7 @@ Route::get('/absensi-guru', function () {
 })->name('absensi.guru');
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 Route::get('/perangkat-ajar', function () {
     return Inertia::render('app/kepala-sekolah/PerangkatAjar');
@@ -97,4 +101,6 @@ Route::get('/pkl', function () {
 
 =======
 >>>>>>> wakil-kepala-sekolah
+=======
+>>>>>>> origin/tata-usaha
 require __DIR__.'/auth.php';
