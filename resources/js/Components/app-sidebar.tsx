@@ -1,5 +1,5 @@
 import * as React from "react";
-import { LayoutDashboard, Users, Building2 } from "lucide-react";
+import { LayoutDashboard, Users } from "lucide-react";
 import { NavUser } from "@/components/nav-user";
 import {
     Sidebar,
@@ -13,9 +13,7 @@ import {
     SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
-
-// Opsional: Jika menggunakan Ziggy secara eksplisit
-// import { route } from "ziggy-js"; 
+import { Link } from "@inertiajs/react";
 
 export function AppSidebar({ active = "", user, appName, ...props }: any) {
     return (
@@ -24,10 +22,12 @@ export function AppSidebar({ active = "", user, appName, ...props }: any) {
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <SidebarMenuButton asChild className="p-1.5">
-                            <a href="/">
-                                {/* Menambahkan placeholder logo jika diperlukan sesuai file lain */}
+                            <Link href="/">
+                                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-sidebar-primary-foreground">
+                                    <Users className="size-4" />
+                                </div>
                                 <span className="font-bold text-xl">{appName}</span>
-                            </a>
+                            </Link>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
                 </SidebarMenu>
@@ -36,32 +36,34 @@ export function AppSidebar({ active = "", user, appName, ...props }: any) {
                 <SidebarGroup>
                     <SidebarGroupLabel>Menu Utama</SidebarGroupLabel>
                     <SidebarMenu>
+                        {/* Menu Tata Usaha */}
                         <SidebarMenuItem>
                             <SidebarMenuButton 
                                 asChild 
+                                isActive={active === "Tata Usaha"}
                                 className={cn(
                                     "transition-colors",
                                     active === "Tata Usaha" && "bg-primary/10 text-primary border-l-2 border-primary"
                                 )}
                             >
-                                {/* Pastikan route 'tata-usaha' sudah ada di web.php */}
-                                <a href={typeof route !== 'undefined' ? route('tata-usaha') : '#'}>
+                                <Link href={route('tata-usaha')}>
                                     <Users size={18} />
                                     <span>Tata Usaha</span>
-                                </a>
+                                </Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
                         
-                        {/* Contoh menu lainnya untuk konsistensi */}
+                        {/* Menu Dashboard */}
                         <SidebarMenuItem>
                             <SidebarMenuButton 
                                 asChild 
+                                isActive={active === "Dashboard"}
                                 className={cn(active === "Dashboard" && "bg-primary/10 text-primary border-l-2 border-primary")}
                             >
-                                <a href="/">
+                                <Link href={route('dashboard')}>
                                     <LayoutDashboard size={18} />
                                     <span>Dashboard</span>
-                                </a>
+                                </Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
                     </SidebarMenu>
