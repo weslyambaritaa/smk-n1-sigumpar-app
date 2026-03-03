@@ -10,38 +10,30 @@ export default function WaliKelasLayout({ children }) {
     const [sidebarOpen, setSidebarOpen] = useState(true);
 
     const menuItems = [
-        { name: "Beranda",          route: "wali-kelas.dashboard",  icon: "🏠" },
-        { name: "Rekap Kehadiran",  route: "wali-kelas.kehadiran",  icon: "📋" },
-        { name: "Rekap Nilai",      route: "wali-kelas.nilai",      icon: "📊" },
-        { name: "Parenting",        route: "wali-kelas.parenting",  icon: "👨‍👩‍👧" },
-        { name: "Kebersihan Kelas", route: "wali-kelas.kebersihan", icon: "🧹" },
-        { name: "Refleksi",         route: "wali-kelas.refleksi",   icon: "📝" },
+        { name: "Beranda",          route: "wali-kelas.dashboard"  },
+        { name: "Rekap Kehadiran",  route: "wali-kelas.kehadiran"  },
+        { name: "Rekap Nilai",      route: "wali-kelas.nilai"      },
+        { name: "Parenting",        route: "wali-kelas.parenting"  },
+        { name: "Kebersihan Kelas", route: "wali-kelas.kebersihan" },
+        { name: "Refleksi",         route: "wali-kelas.refleksi"   },
     ];
 
     return (
         <div className="flex h-screen bg-gray-100">
-            {/* ── Sidebar ── */}
+            {/* Sidebar */}
             <div
                 className={`${
-                    sidebarOpen ? "w-56" : "w-16"
+                    sidebarOpen ? "w-56" : "w-0 overflow-hidden"
                 } bg-gray-200 transition-all duration-300 ease-in-out flex flex-col`}
             >
                 {/* Sidebar header */}
-                <div className="p-4 border-b border-gray-300 flex justify-between items-center">
-                    {sidebarOpen && (
-                        <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">
-                            SMKN 1 Sigumpar
-                        </span>
-                    )}
-                    <button
-                        onClick={() => setSidebarOpen(!sidebarOpen)}
-                        className="text-gray-600 hover:text-gray-800 text-lg"
-                    >
-                        ☰
-                    </button>
+                <div className="p-4 border-b border-gray-300">
+                    <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">
+                        SMKN 1 Sigumpar
+                    </span>
                 </div>
 
-                {/* User profile */}
+                {/* User profile - foto tetap ada */}
                 <div className="p-4 border-b border-gray-300">
                     <div className="flex flex-col items-center">
                         <img
@@ -50,20 +42,17 @@ export default function WaliKelasLayout({ children }) {
                             className="w-16 h-16 rounded-full object-cover border-2 border-blue-500"
                             onError={(e) => {
                                 e.target.style.display = "none";
-                                e.target.nextSibling.style.display = "flex";
+                                e.target.nextSibling.style.display = "block";
                             }}
                         />
+                        {/* Fallback kalau foto tidak ada */}
                         <div
-                            className="w-16 h-16 rounded-full bg-blue-200 items-center justify-center text-2xl hidden"
+                            className="w-16 h-16 rounded-full bg-gray-300 border-2 border-blue-500"
                             style={{ display: "none" }}
-                        >
-                            👤
-                        </div>
-                        {sidebarOpen && (
-                            <p className="text-sm font-semibold text-gray-800 text-center mt-2">
-                                {user.name}
-                            </p>
-                        )}
+                        />
+                        <p className="text-sm font-semibold text-gray-800 text-center mt-2">
+                            {user.name}
+                        </p>
                     </div>
                 </div>
 
@@ -73,18 +62,13 @@ export default function WaliKelasLayout({ children }) {
                         <Link
                             key={item.route}
                             href={route(item.route)}
-                            className={`flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-300 transition-colors ${
+                            className={`flex items-center px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-300 transition-colors ${
                                 route().current(item.route)
-                                    ? "bg-blue-100 text-blue-700 font-semibold border-l-4 border-blue-500"
+                                    ? "bg-gray-400 font-semibold"
                                     : ""
                             }`}
                         >
-                            <span className="text-base min-w-[20px] text-center">
-                                {item.icon}
-                            </span>
-                            {sidebarOpen && (
-                                <span className="text-sm">{item.name}</span>
-                            )}
+                            <span className="text-sm">{item.name}</span>
                         </Link>
                     ))}
                 </nav>
@@ -95,30 +79,32 @@ export default function WaliKelasLayout({ children }) {
                         href={route("logout")}
                         method="post"
                         as="button"
-                        className="w-full flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-300 rounded-lg transition-colors"
+                        className="w-full flex items-center px-4 py-2 text-gray-700 hover:bg-gray-300 rounded-lg transition-colors"
                     >
-                        <span className="text-base min-w-[20px] text-center">🚪</span>
-                        {sidebarOpen && <span className="text-sm">Keluar</span>}
+                        <span className="text-sm">Keluar</span>
                     </Link>
                 </div>
             </div>
 
-            {/* ── Main Content ── */}
+            {/* Main Content */}
             <div className="flex-1 flex flex-col overflow-hidden">
                 {/* Top header */}
-                <header className="bg-blue-600 text-white px-6 py-3 flex items-center gap-4 shadow">
+                <header className="bg-blue-500 text-white px-6 py-4 flex items-center gap-4 shadow">
+                    <button
+                        onClick={() => setSidebarOpen(!sidebarOpen)}
+                        className="text-white hover:text-gray-200 text-lg font-bold"
+                    >
+                        ☰
+                    </button>
                     <img
                         src="/image/tutwuri.png"
                         alt="Logo"
                         className="w-12 h-12 rounded-full"
                         onError={(e) => { e.target.style.display = "none"; }}
                     />
-                    <h1 className="text-xl font-bold tracking-wide">
+                    <h1 className="text-xl font-bold">
                         SMK NEGERI 1 SIGUMPAR
                     </h1>
-                    <span className="ml-auto text-xs bg-white/20 px-3 py-1 rounded-full font-semibold">
-                        Wali Kelas
-                    </span>
                 </header>
 
                 {/* Page content */}
