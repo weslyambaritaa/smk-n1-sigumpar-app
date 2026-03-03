@@ -5,7 +5,6 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -19,7 +18,24 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Guru Mapel Routes - Demo Mode (No Auth Required)
+Route::prefix('wakepsek')->group(function () {
+    Route::get('/dashboard', function () {
+        return Inertia::render('Wakepsek/Dashboard');
+    });
+    Route::get('/daftar-guru', function () {
+        return Inertia::render('Wakepsek/DaftarGuru');
+    });
+    Route::get('/detail-pembelajaran', function () {
+        return Inertia::render('Wakepsek/DetailPembelajaran');
+    });
+    Route::get('/form-instruksi', function () {
+        return Inertia::render('Wakepsek/FormInstruksi');
+    });
+    Route::post('/form-instruksi/send', function () {
+        return redirect('/wakepsek/form-instruksi');
+    });
+});
+
 Route::prefix('/guru-mapel')->name('guru-mapel.')->group(function () {
     Route::get('/dashboard', function () {
         return Inertia::render('GurumapelDashboard');
@@ -46,7 +62,6 @@ Route::get('/laporan', function () {
     return Inertia::render('GuruMapel/Laporan');
 })->name('laporan');
 
-// Authenticated Routes
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -65,6 +80,7 @@ Route::get('/absensi-guru', function () {
     return Inertia::render('app/kepala-sekolah/AbsensiGuru');
 })->name('absensi.guru');
 
+<<<<<<< HEAD
 
 Route::get('/perangkat-ajar', function () {
     return Inertia::render('app/kepala-sekolah/PerangkatAjar');
@@ -79,4 +95,6 @@ Route::get('/pkl', function () {
     return Inertia::render('app/kepala-sekolah/PKL');
 })->name('pkl');
 
+=======
+>>>>>>> wakil-kepala-sekolah
 require __DIR__.'/auth.php';
