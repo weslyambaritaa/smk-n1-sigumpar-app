@@ -7,20 +7,21 @@ export default function GurumapelLayout({ children }) {
         name: "Ivana Pasaribu",
         email: "demo@example.com",
     };
+
     const [sidebarOpen, setSidebarOpen] = useState(true);
 
+    // ✅ Laporan sudah dihapus dari sini
     const menuItems = [
         { name: "Beranda", route: "guru-mapel.dashboard" },
         { name: "Absensi Siswa", route: "absensi" },
         { name: "Perangkat Pembelajaran", route: "perangkat" },
         { name: "Input & Kelola Nilai", route: "nilai" },
         { name: "Catatan Mengajar", route: "catatan" },
-        { name: "Laporan", route: "laporan" },
     ];
 
     return (
         <div className="flex h-screen bg-gray-100">
-            {/* Sidebar */}
+            {/* ================= Sidebar ================= */}
             <div
                 className={`${
                     sidebarOpen ? "w-64" : "w-20"
@@ -28,9 +29,7 @@ export default function GurumapelLayout({ children }) {
             >
                 {/* Header Sidebar */}
                 <div className="p-4 border-b border-gray-300 flex justify-between items-center">
-                    {/* placeholder title/logo */}
                     <span className="text-sm font-semibold">MENU</span>
-                    {/* hamburger toggle to collapse sidebar */}
                     <button
                         onClick={() => setSidebarOpen(!sidebarOpen)}
                         className="text-gray-600 hover:text-gray-800"
@@ -39,10 +38,9 @@ export default function GurumapelLayout({ children }) {
                     </button>
                 </div>
 
-                {/* User Profile Section */}
+                {/* Profile */}
                 <div className="p-4 border-b border-gray-300">
                     <div className="flex flex-col items-center">
-                        {/* sidebar photo cis, place file cis.png in public/images */}
                         <img
                             src="/image/foto cis.jpg"
                             alt="Foto CIS"
@@ -56,7 +54,7 @@ export default function GurumapelLayout({ children }) {
                     </div>
                 </div>
 
-                {/* Menu Items */}
+                {/* Menu */}
                 <nav className="flex-1 px-2 py-4 space-y-2">
                     {menuItems.map((item) => (
                         <Link
@@ -81,7 +79,7 @@ export default function GurumapelLayout({ children }) {
                     ))}
                 </nav>
 
-                {/* Logout Button */}
+                {/* Logout */}
                 <div className="p-4 border-t border-gray-300">
                     <button
                         onClick={() => (window.location.href = "/")}
@@ -95,12 +93,11 @@ export default function GurumapelLayout({ children }) {
                 </div>
             </div>
 
-            {/* Main Content */}
+            {/* ================= Main Content ================= */}
             <div className="flex-1 flex flex-col overflow-hidden">
                 {/* Header */}
-                <header className="bg-blue-500 text-white p-4 flex items-center justify-between">
+                <header className="bg-blue-500 text-white p-4 flex items-center">
                     <div className="flex items-center space-x-4">
-                        {/* header image fiti tutwuri — put fiti-tutwuri.png in public/images */}
                         <img
                             src="/image/tutwuri.png"
                             alt="Tutwuri"
@@ -120,4 +117,3 @@ export default function GurumapelLayout({ children }) {
         </div>
     );
 }
-
