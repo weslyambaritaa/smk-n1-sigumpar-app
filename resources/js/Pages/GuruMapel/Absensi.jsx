@@ -1,4 +1,6 @@
-﻿import { Head } from "@inertiajs/react";
+﻿import GurumapelLayout from '@/Layouts/GurumapelLayout';
+import GurumapelLayout from '@/Layouts/GurumapelLayout';
+import { Head } from "@inertiajs/react";
 export default function Absensi() {
     const siswaData = [
         { id: 1, nama: "Andi Wijaya", nis: "12345", status: "Hadir" },
@@ -174,3 +176,5 @@ export default function Absensi() {
         </GurumapelLayout>
     );
 }
+
+

@@ -1,4 +1,6 @@
-﻿import { Head } from "@inertiajs/react";
+﻿import GurumapelLayout from '@/Layouts/GurumapelLayout';
+import GurumapelLayout from '@/Layouts/GurumapelLayout';
+import { Head } from "@inertiajs/react";
 export default function Catatan() {
     const catatanData = [
         {
@@ -135,3 +137,5 @@ export default function Catatan() {
         </GurumapelLayout>
     );
 }
+
+
