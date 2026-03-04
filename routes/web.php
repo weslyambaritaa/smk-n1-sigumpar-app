@@ -79,4 +79,21 @@ Route::get('/pkl', function () {
     return Inertia::render('app/kepala-sekolah/PKL');
 })->name('pkl');
 
+// Temporary preview routes for Tata Usaha pages (no auth)
+Route::get('/tata-usaha/jadwal-guru', function () {
+    return Inertia::render('app/tata-usaha/tata-usaha-jadwal-guru');
+});
+
+Route::get('/tata-usaha/jadwal-piket', function () {
+    return Inertia::render('app/tata-usaha/tata-usaha-jadwal-piket');
+});
+
+Route::get('/tata-usaha/pengumuman', function () {
+    return Inertia::render('app/tata-usaha/tata-usaha-pengumuman');
+});
+
+Route::get('/tata-usaha/jadwal-upacara', function () {
+    return Inertia::render('app/tata-usaha/tata-usaha-jadwal-upacara');
+});
+
 require __DIR__.'/auth.php';
