@@ -19,6 +19,10 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/school-website', function () {
+    return Inertia::render('app/landing-page/SchoolWebsite');
+})->name('school.website');
+
 // Guru Mapel Routes - Demo Mode (No Auth Required)
 Route::prefix('/guru-mapel')->name('guru-mapel.')->group(function () {
     Route::get('/dashboard', function () {
