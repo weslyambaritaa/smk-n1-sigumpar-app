@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { Link } from '@inertiajs/react';
 
 const BLUE = "#20639B";
 const YELLOW = "#F4A300";
@@ -812,7 +813,7 @@ export default function SchoolWebsite() {
                         ))}
                     </div>
 
-                    <button className="btn-login">Login</button>
+                    <Link href={route('login')} className="btn-login">Login</Link>
                 </nav>
 
                 <section id="beranda" className="hero-section fade-up">
