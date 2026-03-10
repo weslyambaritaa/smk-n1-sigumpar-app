@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -8,7 +8,7 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('app/tata-usaha/tata-usaha-page', [
         'tuList' => ['data' => [], 'last_page' => 1],
-        'auth' => ['user' => auth()->user()],
+        'auth' => ['user' => auth()->user() ?? ['name' => 'Tata Usaha', 'email' => '']],
         'appName' => config('app.name'),
         'perPage' => 10,
     ]);
@@ -105,16 +105,30 @@ Route::prefix('kepala-sekolah')->group(function () {
     })->name('kepsek.pkl');
 });
 
-Route::prefix('tata-usaha')->group(function () {
+Route::prefix('tata-usaha')->name('tata-usaha.')->group(function () {
     Route::get('/arsip-surat', function () {
         return Inertia::render('app/tata-usaha/tata-usaha-arsip-surat');
-    })->name('tata-usaha.arsip-surat');
+    })->name('arsip-surat');
     Route::get('/input-data-guru', function () {
         return Inertia::render('app/tata-usaha/tata-usaha-input-data-guru');
-    })->name('tata-usaha.input-data-guru');
+    })->name('input-data-guru');
     Route::get('/input-data-siswa', function () {
         return Inertia::render('app/tata-usaha/tata-usaha-input-data-siswa');
-    })->name('tata-usaha.input-data-siswa');
+    })->name('input-data-siswa');
+
+    // Temporary preview routes for Tata Usaha pages (no auth)
+    Route::get('/jadwal-guru', function () {
+        return Inertia::render('app/tata-usaha/tata-usaha-jadwal-guru');
+    })->name('jadwal-guru');
+    Route::get('/jadwal-piket', function () {
+        return Inertia::render('app/tata-usaha/tata-usaha-jadwal-piket');
+    })->name('jadwal-piket');
+    Route::get('/pengumuman', function () {
+        return Inertia::render('app/tata-usaha/tata-usaha-pengumuman');
+    })->name('pengumuman');
+    Route::get('/jadwal-upacara', function () {
+        return Inertia::render('app/tata-usaha/tata-usaha-jadwal-upacara');
+    })->name('jadwal-upacara');
 });
 
 Route::middleware('auth')->group(function () {
