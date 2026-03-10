@@ -15,68 +15,9 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-// Guru Mapel Routes - Demo Mode (No Auth Required)
-Route::prefix('/guru-mapel')->name('guru-mapel.')->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('GurumapelDashboard');
-    })->name('dashboard');
-});
-
-Route::get('/absensi', function () {
-    return Inertia::render('GuruMapel/Absensi');
-})->name('absensi');
-
-Route::get('/perangkat', function () {
-    return Inertia::render('GuruMapel/Perangkat');
-})->name('perangkat');
-
-Route::get('/nilai', function () {
-    return Inertia::render('GuruMapel/Nilai');
-})->name('nilai');
-
-Route::get('/catatan', function () {
-    return Inertia::render('GuruMapel/Catatan');
-})->name('catatan');
-
-Route::get('/laporan', function () {
-    return Inertia::render('GuruMapel/Laporan');
-})->name('laporan');
-
-// Authenticated Routes
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-// ... kode rute lainnya di atas ...
-
-Route::get('/absensi-siswa', function () {
-
-    return Inertia::render('app/kepala-sekolah/AbsensiSiswa');
-})->name('absensi.siswa');
-
-Route::get('/absensi-guru', function () {
-
-    return Inertia::render('app/kepala-sekolah/AbsensiGuru');
-})->name('absensi.guru');
-
-
-Route::get('/perangkat-ajar', function () {
-    return Inertia::render('app/kepala-sekolah/PerangkatAjar');
-})->name('perangkat.ajar');
-
-Route::get('/evaluasi-kinerja', function () {
-    return Inertia::render('app/kepala-sekolah/EvaluasiKinerjaGuru');
-})->name('evaluasi.kinerja');
-
-
-Route::get('/pkl', function () {
-    return Inertia::render('app/kepala-sekolah/PKL');
-})->name('pkl');
+Route::get('/school-website', function () {
+    return Inertia::render('app/landing-page/SchoolWebsite');
+})->name('school.website');
 
 require __DIR__.'/auth.php';
